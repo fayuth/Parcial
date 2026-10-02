@@ -2,8 +2,7 @@ package hola.parcial.interfaces;
 
 public interface Estudiante {
 
-    private void creeDireccion() {
-
+    private void creeDireccion(){
 
     }
 
