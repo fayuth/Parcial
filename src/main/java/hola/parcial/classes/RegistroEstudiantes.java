@@ -8,8 +8,6 @@ import java.util.HashMap;
 public class RegistroEstudiantes {
     private final HashMap<String, Estudiante> estudiantes = new HashMap<>();
 
-    public RegistroEstudiantes(Codigo codigo, String nombre, String apellido, String edad, String describir) {
-    }
 
     public void agregar(String codigo, String nombre, Direccion d) {
         if (codigo == null || codigo.trim().isEmpty()) {

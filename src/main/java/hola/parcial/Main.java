@@ -1,26 +1,29 @@
-import java.util.InputMismatchException;
+package hola.parcial;
+
+import hola.parcial.classes.Direccion;
+import hola.parcial.classes.Estudiante;
+import hola.parcial.classes.RegistroEstudiantes;
+import hola.parcial.exception.EstudianteNoEncontrado;
+import hola.parcial.interfaces.Describible;
+
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+
         RegistroEstudiantes registro = new RegistroEstudiantes();
         Scanner sc = new Scanner(System.in);
 
-        // Demostracion de sobrecarga y polimorfismo exigida en el punto b
-        Direccion d1 = new Direccion("Barranquilla", "Calle 64 # 52-62");
-        registro.agregar("001", "Juan Perez", d1); // usa version 1
+        Direccion d1 = new Direccion("Puerto Colombia", "Cra 5 #10-46");
+        registro.agregar("001", "Fayuth Rojas", d1);
 
-        Direccion d2 = new Direccion("Soledad", "Calle 30 # 18-10");
-        Estudiante e2 = new Estudiante("002", "Ana Gomez", d2);
-        registro.agregar(e2); // usa version 2
+        Direccion d2 = new Direccion("Galapa", "Cra 38 #38");
+        Estudiante e2 = new Estudiante("002", "Cristan De la Hoz", d2);
 
-        // Polimorfismo: invocar describir() desde referencia Describible
-        Describible ref = e2;
-        System.out.println("Demo polimorfismo: " + ref.describir());
 
         int opcion = -1;
         do {
-            System.out.println("\n--- MENU REGISTRO ESTUDIANTES ---");
             System.out.println("1. Agregar");
             System.out.println("2. Listar");
             System.out.println("3. Buscar");
@@ -42,7 +45,7 @@ public class Main {
                         String cal = sc.nextLine();
                         Direccion dir = new Direccion(ciu, cal);
                         registro.agregar(cod, nom, dir);
-                        System.out.println("Estudiante agregado OK");
+                        System.out.println("Estudiante agregado");
                         break;
                     case 2:
                         registro.listar();
@@ -51,12 +54,11 @@ public class Main {
                         System.out.print("Codigo a buscar: ");
                         String codBus = sc.nextLine();
                         Estudiante encontrado = registro.buscar(codBus);
-                        // Usando Describible
                         Describible desc = encontrado;
                         System.out.println(desc.describir());
                         break;
                     case 0:
-                        System.out.println("Saliendo...");
+                        System.out.println("Morido");
                         break;
                     default:
                         System.out.println("Opcion invalida");
@@ -71,7 +73,7 @@ public class Main {
             } finally {
                 System.out.println("Operacion finalizada");
             }
-        } while (opcion!= 0);
+        } while (opcion != 0);
 
         sc.close();
     }
