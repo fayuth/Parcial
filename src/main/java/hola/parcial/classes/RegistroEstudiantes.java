@@ -1,7 +1,5 @@
 package hola.parcial.classes;
 
-import hola.parcial.interfaces.Estudiante;
-
 public class RegistroEstudiantes {
 
     String codigo;
