@@ -4,6 +4,9 @@ package hola.parcial;
 //asfdasdsada
 
 
+import hola.parcial.classes.RegistroEstudiantes;
+
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -22,7 +25,17 @@ public class Main {
             try {
                 switch (opcion) {
                     case 1:
-                        System.out.println("Test");
+
+                        RegistroEstudiantes registro = new RegistroEstudiantes();
+
+                        buscarestudiante(registro);
+                        break;
+                        case 2:
+
+                            break;
+                            case 3:
+
+                                break;
                 }
 
             } catch (Exception e) {
@@ -47,7 +60,7 @@ public class Main {
 
 
 
-    private static void buscarestudiante() {
+    private static void buscarestudiante(RegistroEstudiantes registro) {
         Scanner sc = new Scanner(System.in);
 
 

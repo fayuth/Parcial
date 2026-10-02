@@ -1,4 +1,17 @@
 package hola.parcial.classes;
 
-public class RegistroEstudiantes {
+import hola.parcial.interfaces.Estudiante;
+
+public class RegistroEstudiantes  implements Estudiante {
+
+    @Override
+    public void getCodigo() {
+
+    }
+
+    public RegistroEstudiantes(){
+
+    }
+
+
 }
