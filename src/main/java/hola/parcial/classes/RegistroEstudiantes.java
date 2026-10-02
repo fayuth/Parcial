@@ -12,12 +12,6 @@ public class RegistroEstudiantes  implements Estudiante {
     String direccion;
     String Describir;
 
-
-    @Override
-    public void getCodigo() {
-
-    }
-
     public RegistroEstudiantes(String nombre, String apellido, String cuidad, String calle, String edad, String direccion, String describir) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -30,5 +24,8 @@ public class RegistroEstudiantes  implements Estudiante {
 
     }
 
+    @Override
+    public void getCodigo() {
 
+    }
 }
