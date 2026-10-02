@@ -4,9 +4,9 @@ import hola.parcial.interfaces.Describible;
 import hola.parcial.interfaces.Identificable;
 
 public class Estudiante implements Identificable, Describible {
-    private String codigo;
-    private String nombre;
-    private Direccion direccion;
+    private final String codigo;
+    private final String nombre;
+    private final Direccion direccion;
 
     public Estudiante(String codigo, String nombre, Direccion direccion) {
         this.codigo = codigo;
@@ -22,7 +22,7 @@ public class Estudiante implements Identificable, Describible {
 
     @Override
     public String describir() {
-        return "Codigo: " + codigo + " | Nombre: " + nombre + " | Direccion: " + direccion.toString();
+        return "Codigo: " + codigo + " \n Nombre: " + nombre + " \n Direccion: " + direccion.toString();
     }
 
     @Override
