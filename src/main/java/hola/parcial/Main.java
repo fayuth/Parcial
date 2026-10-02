@@ -4,6 +4,8 @@ package hola.parcial;
 //asfdasdsada
 
 
+import hola.parcial.classes.Codigo;
+import hola.parcial.classes.Direccion;
 import hola.parcial.classes.RegistroEstudiantes;
 
 import java.util.Scanner;
@@ -23,8 +25,9 @@ public class Main {
                 int opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
-                        RegistroEstudiantes registro = new RegistroEstudiantes();
-                        buscarestudiante(registro);
+
+                        registarEstudiante();
+
                         break;
                     case 2:
 
@@ -51,6 +54,40 @@ public class Main {
         System.out.println("2 - Listar estudiantes");
         System.out.println("3 - Buscar estudiante");
         System.out.println("0 - Salir");
+
+
+    }
+
+
+    public static void registarEstudiante() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Crea tu mendigo codigo");
+        String codigo = sc.nextLine();
+
+
+        System.out.println("Coloca el nombre del estudiante");
+        String nombre = sc.nextLine();
+
+        System.out.println("Coloca el apellido del estudiante");
+        String apellido = sc.nextLine();
+
+
+        System.out.println("Coloca el edad del estudiante");
+        String edad = sc.nextLine();
+
+        System.out.println("Coloca el nombre del estudiante");
+        String describir = sc.nextLine();
+
+
+        new RegistroEstudiantes(new Codigo(nombre, apellido), nombre, apellido, edad, describir);
+
+
+        System.out.print("Codigo: " + codigo + "\n");
+        System.out.print("Nombre: " + nombre + "\n");
+        System.out.print("Apellido: " + apellido + "\n");
+        System.out.print("Edad: " + edad + "\n");
+        System.out.print("About me: " + describir + "\n");
 
 
     }
