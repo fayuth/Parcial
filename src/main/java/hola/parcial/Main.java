@@ -1,98 +1,78 @@
-package hola.parcial;
-
-
-//asfdasdsada
-
-
-import hola.parcial.classes.Codigo;
-import hola.parcial.classes.Direccion;
-import hola.parcial.classes.RegistroEstudiantes;
-
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-
-    Main self = new Main();
-
-
     public static void main(String[] args) {
+        RegistroEstudiantes registro = new RegistroEstudiantes();
         Scanner sc = new Scanner(System.in);
 
-        sendmenu();
-        try {
+        // Demostracion de sobrecarga y polimorfismo exigida en el punto b
+        Direccion d1 = new Direccion("Barranquilla", "Calle 64 # 52-62");
+        registro.agregar("001", "Juan Perez", d1); // usa version 1
 
-            if (sc.hasNextLine()) {
-                int opcion = sc.nextInt();
+        Direccion d2 = new Direccion("Soledad", "Calle 30 # 18-10");
+        Estudiante e2 = new Estudiante("002", "Ana Gomez", d2);
+        registro.agregar(e2); // usa version 2
+
+        // Polimorfismo: invocar describir() desde referencia Describible
+        Describible ref = e2;
+        System.out.println("Demo polimorfismo: " + ref.describir());
+
+        int opcion = -1;
+        do {
+            System.out.println("\n--- MENU REGISTRO ESTUDIANTES ---");
+            System.out.println("1. Agregar");
+            System.out.println("2. Listar");
+            System.out.println("3. Buscar");
+            System.out.println("0. Salir");
+            System.out.print("Opcion: ");
+
+            try {
+                opcion = Integer.parseInt(sc.nextLine());
+
                 switch (opcion) {
                     case 1:
-
-                        registarEstudiante();
-
+                        System.out.print("Codigo: ");
+                        String cod = sc.nextLine();
+                        System.out.print("Nombre: ");
+                        String nom = sc.nextLine();
+                        System.out.print("Ciudad: ");
+                        String ciu = sc.nextLine();
+                        System.out.print("Calle: ");
+                        String cal = sc.nextLine();
+                        Direccion dir = new Direccion(ciu, cal);
+                        registro.agregar(cod, nom, dir);
+                        System.out.println("Estudiante agregado OK");
                         break;
                     case 2:
-
+                        registro.listar();
                         break;
                     case 3:
-
+                        System.out.print("Codigo a buscar: ");
+                        String codBus = sc.nextLine();
+                        Estudiante encontrado = registro.buscar(codBus);
+                        // Usando Describible
+                        Describible desc = encontrado;
+                        System.out.println(desc.describir());
                         break;
+                    case 0:
+                        System.out.println("Saliendo...");
+                        break;
+                    default:
+                        System.out.println("Opcion invalida");
                 }
-
-
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Debes ingresar un numero valido");
+                opcion = -1;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error de validacion: " + e.getMessage());
+            } catch (EstudianteNoEncontrado e) {
+                System.out.println("Error de busqueda: " + e.getMessage());
+            } finally {
+                System.out.println("Operacion finalizada");
             }
+        } while (opcion!= 0);
 
-        } catch (Exception e) {
-            sendmenu();
-
-        }
-    }
-
-
-    public static void sendmenu() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("1 - Agregar estudiante");
-        System.out.println("2 - Listar estudiantes");
-        System.out.println("3 - Buscar estudiante");
-        System.out.println("0 - Salir");
-
-
-    }
-
-
-    public static void registarEstudiante() {
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Crea tu mendigo codigo");
-        String codigo = sc.nextLine();
-
-
-        System.out.println("Coloca el nombre del estudiante");
-        String nombre = sc.nextLine();
-
-        System.out.println("Coloca el apellido del estudiante");
-        String apellido = sc.nextLine();
-
-
-        System.out.println("Coloca el edad del estudiante");
-        String edad = sc.nextLine();
-
-        System.out.println("Coloca el nombre del estudiante");
-        String describir = sc.nextLine();
-
-
-        new RegistroEstudiantes(new Codigo(nombre, apellido), nombre, apellido, edad, describir);
-
-
-        System.out.print("Codigo: " + codigo + "\n");
-        System.out.print("Nombre: " + nombre + "\n");
-        System.out.print("Apellido: " + apellido + "\n");
-        System.out.print("Edad: " + edad + "\n");
-        System.out.print("About me: " + describir + "\n");
-
-
-    }
-
-    private static void buscarestudiante(RegistroEstudiantes registro) {
-        Scanner sc = new Scanner(System.in);
+        sc.close();
     }
 }
