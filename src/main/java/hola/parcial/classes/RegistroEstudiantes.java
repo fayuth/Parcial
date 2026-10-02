@@ -12,6 +12,7 @@ public class RegistroEstudiantes {
 
     public RegistroEstudiantes(Codigo codigo, String nombre, String apellido,String edad, String describir) {
 
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
