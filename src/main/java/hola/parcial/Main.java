@@ -92,10 +92,7 @@ public class Main {
 
     }
 
-
     private static void buscarestudiante(RegistroEstudiantes registro) {
         Scanner sc = new Scanner(System.in);
-
-
     }
 }
